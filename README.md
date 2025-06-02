@@ -1,4 +1,4 @@
-# plc_conn
+# plc_conn gesgt
 
 plc_conn is a Python library tailored to provide an intuitive interface for controlling Mitsubishi (e.g., MEL_FX5U) and Siemens PLCs.
 
