@@ -1,0 +1,14 @@
+LICENSE
+README.md
+setup.py
+plc_conn/__init__.py
+plc_conn/plc_utils.py
+plc_conn.egg-info/PKG-INFO
+plc_conn.egg-info/SOURCES.txt
+plc_conn.egg-info/dependency_links.txt
+plc_conn.egg-info/top_level.txt
+plc_conn/__versions/v310/plc_com.pyc
+plc_conn/__versions/v311/plc_com.pyc
+plc_conn/__versions/v312/plc_com.pyc
+plc_conn/__versions/v38/plc_com.pyc
+plc_conn/__versions/v39/plc_com.pyc
