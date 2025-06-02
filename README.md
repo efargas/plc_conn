@@ -2,6 +2,14 @@
 
 plc_conn is a Python library tailored to provide an intuitive interface for controlling Mitsubishi (e.g., MEL_FX5U) and Siemens PLCs.
 
+## Installation
+
+```bash
+pip install plc_conn
+```
+
+(Note: This will work once the package is published to PyPI. For local installation from the built package, you can use `pip install path/to/your_package_wheel.whl` or `pip install .` from the project root after building).
+
 # Features
 
 - Multiple PLC Support: Connect seamlessly to a wide range of Mitsubishi and Siemens PLCs.
@@ -9,27 +17,39 @@ plc_conn is a Python library tailored to provide an intuitive interface for cont
 - Write Operations: Relay boolean, 16-bit, and 32-bit integers to PLCs.
 - Flexible Logging: Optional logging capability for enhanced debugging and tracking.
 
+## Basic Usage
 
+```python
+from plc_conn import PLC
 
-# Basic Usage
-Here's a basic usage example to get you started:
+# Initialize the PLC object
+# Replace with your PLC's actual IP address, port, and type
+plc_instance = PLC(ip_address='192.168.1.10', port=502, plc_type='MEL_FX5U', log=True)
 
-```
-from plc_conn import plc_utils
+if plc_instance.connected:
+    print(f"Successfully connected to PLC at {plc_instance.ip_address}")
 
-plc = plc_utils.PLC(instance_id=0,
-                    ip_address="127.0.0.1",
-                    port=502,
-                    plc_type="MEL_FX5U",
-                    log=False)
+    # Example: Read a boolean value from register M100
+    bool_value = plc_instance.read_bool('M100')
+    if bool_value is not None:
+        print(f"Value of M100: {bool_value}")
+    else:
+        print("Failed to read M100")
 
-# Reading from the PLC
-value = plc.read_bool("M100")  # or "X1" "Y1"
-print(value)
+    # Example: Write a boolean value to register M101
+    write_status = plc_instance.write_bool('M101', True)
+    print(f"Write status for M101: {write_status}")
 
-# Writing to the PLC
-op = plc.write_bool("M100", True)
-print(op)  # "success" or "failure" or "unconfirmed"
+    # Example: Read an integer value from register D100
+    int_value = plc_instance.read_int16('D100')
+    if int_value is not None:
+        print(f"Value of D100: {int_value}")
+    else:
+        print("Failed to read D100")
+
+else:
+    print(f"Failed to connect to PLC at {plc_instance.ip_address}")
+
 ```
 
 # Supported PLC Types
@@ -47,4 +67,3 @@ For any other PLC type you may open an issue, I will try my best to add the func
 
 # License
 This project adopts the MIT License. Kindly check the LICENSE.md file for comprehensive details.
-
